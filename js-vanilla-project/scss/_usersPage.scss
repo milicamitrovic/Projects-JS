@@ -1,0 +1,38 @@
+.users-list {
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+}
+
+.users-list:last-child {
+    margin-bottom: 50px;
+}
+
+.user-li {
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px auto;
+    list-style-type: none;
+    max-width: 500px;
+    max-height: 80px;
+    margin-right: 0px;
+    display: inline-block;
+}
+
+.user-img {
+    display: inline-block;
+    border-radius: 50%;
+    height: 10%;
+    width: 10%;
+    margin: 10px;
+    box-sizing: border-box;
+    
+}
+
+.user-name {
+    display: inline-block;
+   margin-top: 20px;
+   font-weight: 500;
+}
+
