@@ -7,16 +7,16 @@ postList.setAttribute("class", "container main-post-list");
 const createVideoPost = (post) => {
 
     const postLi = document.createElement("li");
-    postLi.classList.add("video-post");
+    postLi.setAttribute("class", "feed-post video-post");
     postLi.innerHTML = `
-        <div class="container" data-id=${post.id}>
+        <div class="container" post-id=${post.id}>
             <div class="row" user-id=${post.userId}>
                 <div>
                     <iframe width='100%' height='300' src=${post.videoUrl} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
                 </div>
             </div>
-            <div>
-                ${post.commentsNum} comments
+            <div class="post-event">
+                <a href="#" class="post-event" post-id=${post.id} post-type=${post.type}> ${post.commentsNum} comments </a>
             </div>
         </div>
      `;
@@ -27,14 +27,14 @@ const createVideoPost = (post) => {
 const createTextPost = (post) => {
    
     const postLi = document.createElement("li");
-    postLi.classList.add("text-post");
+    postLi.setAttribute("class", "feed-post text-post");
     postLi.innerHTML = `
-    <div class="container" data-id=${post.id}>
+    <div class="container" post-id=${post.id}>
         <div class="" user-id=${post.userId}>
             ${post.text}
         </div>
         <div>
-            ${post.commentsNum} comments
+           <a href="#" class="post-event" post-id=${post.id} post-type=${post.type}> ${post.commentsNum} comments </a>
         </div>
     </div>
     `;
@@ -44,14 +44,14 @@ const createTextPost = (post) => {
 const createImagePost = (post) => {
 
     const postLi = document.createElement("li");
-    postLi.classList.add("image-post");
+    postLi.setAttribute("class", "feed-post image-post");
     postLi.innerHTML = `
-    <div class="container" data-id=${post.id}>
+    <div class="container" post-id=${post.id}>
         <div class="" user-id=${post.userId}>
             <img src=${post.imageUrl} alt=${post.type} class="img" />
         </div>
-        <div>
-            ${post.commentsNum} comments
+        <div class="post-event">
+            <a href="#" class="post-event" post-id=${post.id} post-type=${post.type}> ${post.commentsNum} comments </a>
         </div>
     </div>
     `;

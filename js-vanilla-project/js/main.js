@@ -1,18 +1,17 @@
 import { createHeader } from "./ui/partials/Header.js";
 import * as data from "./data/data.js";
 import * as feedPage from "./ui/feedPage/FeedList.js";
+import { createSinglePost } from "./ui/feedPage/SinglePost.js"
 import { createUsersList } from "./ui/peoplePage/UsersList.js";
 import { createFooter } from "./ui/partials/Footer.js";
-
-const root = document.querySelector(".root");
 
 
 const createFeedPage = (event) => {
 
     data.getPosts()
         .then((posts) => {
-            localStorage.setItem("posts", JSON.stringify(posts))
             feedPage.createFeedList(posts)
+            localStorage.setItem("posts", JSON.stringify(posts))
         })
 }
 
@@ -44,6 +43,28 @@ const initFeedPage = (event) => {
     })
 }
 
+const singlePostHandler = (event) => {
+
+    event.preventDefault();
+    const postId = event.target.getAttribute("post-id");
+    const type = event.target.getAttribute("post-type");
+    
+    data.getSinglePost(type, postId)
+        .then((post) => {
+            createSinglePost(post)
+        })
+}
+
+
+const initSinglePostPage = (event) => {
+
+    const feedPost = document.querySelectorAll(".post-event");
+
+    feedPost.forEach((singlePost) => {
+        singlePost.addEventListener("click", singlePostHandler);
+    })
+}
+
 
 
 export const init = () => {
@@ -53,4 +74,5 @@ export const init = () => {
     createFooter();
     initUsersPage();
     initFeedPage();
+    setTimeout(initSinglePostPage, 1000);
 }

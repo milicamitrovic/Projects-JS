@@ -22,7 +22,9 @@ export const get = (url) => {
         },
         method: 'GET'
     })
-        .then(response => response.json())
+        .then(response => {
+           return response.json()
+        })
 }
 
 export const post = (url, newContent) => {

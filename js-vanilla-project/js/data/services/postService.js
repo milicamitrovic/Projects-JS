@@ -1,5 +1,5 @@
 import { get } from "./APIService.js";
-import { postsEndpoint } from "../shared/constants.js";
+import { postsEndpoint, urlEndpoint } from "../shared/constants.js";
 import { Post } from "../entities/Post.js";
 import { TextPost } from "../entities/TextPost.js";
 import { ImagePost } from "../entities/ImagePost.js";
@@ -13,7 +13,7 @@ class PostService {
             .then(response => {
                 return response.filter(post => {
                     if (post.videoUrl) {
-                        return post.videoUrl.includes("youtube")
+                        return post.videoUrl.includes("youtube.com/embed")
                     }
                     return true
                 })
@@ -30,11 +30,38 @@ class PostService {
                             return new ImagePost(post.id, post.date, post.userId, post.userDisplayName, post.type, post.commentsNum, post.imageUrl);
                         default:
                             console.log("no posts to show");
-
                     }
                 })
 
             })
+    }
+
+    selectPostType (type) {
+
+        let url = "";
+
+        switch (type) {
+            case "text":
+                return url = `${urlEndpoint}TextPosts/`;
+
+            case "video":
+                return url = `${urlEndpoint}VideoPosts/`;
+
+            case "image":
+                return url = `${urlEndpoint}ImagePosts/`;
+            default:
+                return "...";
+        }
+
+        return url;
+
+    }
+
+    fetchSinglePost(type, id) {
+
+        const urlEndpoint = (`${this.selectPostType(type)}${id}`);
+        return get(urlEndpoint)
+      
     }
 }
 
