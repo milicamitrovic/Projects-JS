@@ -1,7 +1,6 @@
 const root = document.querySelector(".root");
 
 const postList = document.createElement("ul");
-
 postList.setAttribute("class", "container main-post-list");
 
 const createVideoPost = (post) => {
@@ -15,12 +14,11 @@ const createVideoPost = (post) => {
                     <iframe width='100%' height='300' src=${post.videoUrl} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
                 </div>
             </div>
-            <div class="post-event">
-                <a href="#" class="post-event" post-id=${post.id} post-type=${post.type}> ${post.commentsNum} comments </a>
+            <div class="">
+                <a href="#" class="post-event" post-id=${post.id} post-type=${post.type} user-id=${post.userId}> ${post.commentsNum} comments </a>
             </div>
         </div>
      `;
-
     postList.appendChild(postLi);
 }
 
@@ -46,9 +44,9 @@ const createImagePost = (post) => {
     const postLi = document.createElement("li");
     postLi.setAttribute("class", "feed-post image-post");
     postLi.innerHTML = `
-    <div class="container" post-id=${post.id}>
+    <div class="container feed-image-post" post-id=${post.id}>
         <div class="" user-id=${post.userId}>
-            <img src=${post.imageUrl} alt=${post.type} class="img" />
+            <img src=${post.imageUrl} alt=${post.type} class="feed-img" />
         </div>
         <div class="post-event">
             <a href="#" class="post-event" post-id=${post.id} post-type=${post.type}> ${post.commentsNum} comments </a>

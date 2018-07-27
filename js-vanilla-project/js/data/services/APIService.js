@@ -32,7 +32,11 @@ export const post = (url, newContent) => {
     const postData = {
         method: 'POST',
         body: JSON.stringify(newContent),
-        headers: getHeaders(),
+        headers: {
+            'Content-Type': 'application/json',
+            'sessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE',
+            'Key': 'bitbookdev',
+        },
     }
     return fetch(url, postData)
 

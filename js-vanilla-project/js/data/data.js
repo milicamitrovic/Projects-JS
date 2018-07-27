@@ -1,16 +1,28 @@
 import { postService } from "./services/postService.js";
 import { userService } from "./services/userService.js";
+import { commentService } from "./services/commentService.js";
 
 export const getPosts = () => {
-
     return postService.fetchPosts();
 }
 
-export const getUsers = () => {
+export const getSinglePost = (type, id) => {
+    return postService.fetchSinglePost(type, id);
+}
 
+export const getComments = (id) => {
+    return commentService.fetchComments(id);
+}
+
+export const postNewComment = (commentData) => {
+    return commentService.postNewComment(commentData);
+}
+
+export const getUsers = () => {
     return userService.fetchUsers();
 }
 
-export const getSinglePost = (type, id) => {
-    return postService.fetchSinglePost(type, id)
+export const getSingleUser = (id) => {
+    return userService.fetchSingleUser(id)
+        
 }

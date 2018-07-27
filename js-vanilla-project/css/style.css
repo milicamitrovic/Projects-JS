@@ -23,7 +23,8 @@ body {
   border: none;
   cursor: pointer;
   padding-top: 0;
-  padding-bottom: 0; }
+  padding-bottom: 0;
+  margin-top: 10px; }
 
 .hamburger-btn:focus {
   outline: none; }
@@ -33,7 +34,7 @@ body {
   height: 3.2px;
   background: white;
   display: block;
-  margin: 9.6px 0; }
+  margin-top: 7px; }
 
 /*desktop*/
 .desktop-nav {
@@ -61,23 +62,32 @@ body {
   padding: 0;
   margin-left: 26px;
   margin-top: 30px;
+  font-size: 10px; }
+
+.logo-title {
+  position: relative;
+  bottom: 17px;
+  left: 86px;
   font-size: 20px; }
 
 .open {
   display: flex;
   transform: translateX(0); }
 
-@media (min-width: 40rem) {
+@media (min-width: 640px) {
   .hamburger-btn {
     display: none; }
 
   .desktop-nav div {
-    display: block; } }
-.logo-title {
-  font-size: 20px;
-  font-weight: initial;
-  margin-bottom: 0; }
+    display: block; }
 
+  .logo-title {
+    position: relative;
+    top: 15px; }
+
+  .feed-page, .profile-page, .people-page {
+    position: relative;
+    bottom: 15px; } }
 html {
   position: relative;
   min-height: 100%; }
@@ -94,13 +104,13 @@ footer {
 
 .video-post, .text-post, .image-post {
   margin-top: 10px;
-  border: 1px solid black;
+  border: 1px solid #7ccccc;
   box-sizing: border-box;
   border-radius: 10px;
   list-style-type: none; }
 
-.img {
-  height: 100%;
+.feed-img {
+  height: 300px;
   width: 100%;
   margin-top: 15px;
   border-radius: 10px; }
@@ -138,5 +148,52 @@ ul.main-post-list {
   display: inline-block;
   margin-top: 20px;
   font-weight: 500; }
+
+.comment-value {
+  margin-top: 20px;
+  width: 80%;
+  border-radius: 10px; }
+
+.comment-button {
+  border-radius: 10px;
+  color: white;
+  background-color: #7ccccc;
+  padding-right: 0; }
+
+.comments-list {
+  padding-left: 0; }
+
+.single-comment {
+  border: 1px solid #7ccccc;
+  border-radius: 10px;
+  list-style-type: none;
+  margin: 20px 0px; }
+
+.comment-content {
+  margin-top: 20px; }
+
+#text, #video, #image {
+  margin-top: 20px;
+  padding: 0px; }
+
+.post-content {
+  margin-left: 15px; }
+
+.content-box {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
+  text-align: center; }
+
+.user-image {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px; }
+
+.comment-name {
+  margin-left: 5px; }
 
 /*# sourceMappingURL=style.css.map */

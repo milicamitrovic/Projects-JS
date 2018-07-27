@@ -15,12 +15,11 @@ export const createHeader = () => {
                 </button>
             </nav>
             <nav class="desktop">
+                <h1 class="logo-title"> Virtual life </h1>
                 <div class="desktop-nav row">
-                    <h1 class="logo-title"> Virtual life </h1>
-                        <div class="feed-page">Feed</div>
-                        <div class="people-page">People</div>  
-                        <div class="profile-page">Profile</div>  
-                    </div>
+                        <div class=" col-lg-1 feed-page">Feed</div>
+                        <div class="col-lg-1 people-page">People</div>  
+                        <div class="col-lg-1 profile-page">Profile</div>  
                 </div>
             </nav>
         </div>
