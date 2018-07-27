@@ -11,9 +11,19 @@ const createFeedPage = (event) => {
 
     data.getPosts()
         .then((posts) => {
-            localStorage.setItem("posts", JSON.stringify(posts))
-            feedPage.createFeedList(posts)
+            localStorage.setItem("posts", JSON.stringify(posts));
+            userHandler(posts);
         })
+}
+
+const userHandler = (posts) => {
+    posts.forEach((post) => { 
+        const userId = post.userId;
+        data.getSingleUser(userId)
+            .then((user) => {
+                feedPage.createFeedList(post, user);    
+            });   
+        });
 }
 
 const createUserPage = (event) => {
@@ -24,16 +34,16 @@ const createUserPage = (event) => {
         });
 }
 
+const feedPageHandler = (event) => {
+    createFeedPage();
+}
+
 const initUsersPage = () => {
 
     const peoplePage = document.querySelectorAll(".people-page");
     peoplePage.forEach((user) => {
         user.addEventListener("click", createUserPage);
     });
-}
-
-const feedPageHandler = (event) => {
-    createFeedPage();
 }
 
 const initFeedPage = (event) => {

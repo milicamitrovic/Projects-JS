@@ -18,7 +18,7 @@ export const createUsersList = (users) => {
         
         <div class="container">
             <div class="row">
-                <img src= alt="avatar" class="col-sm-2 user-img"/>
+                <img src=${user.avatarUrl} alt="avatar" class="user-img col-sm-2"/>
                 <span class="col-sm-6 user-name"> ${user.name} </span>
             </div>
         </div>

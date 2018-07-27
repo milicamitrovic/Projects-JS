@@ -13,7 +13,7 @@ class PostService {
             .then(response => {
                 return response.filter(post => {
                     if (post.videoUrl) {
-                        return post.videoUrl.includes("youtube")
+                        return post.videoUrl.includes("youtube.com/embed")
                     }
                     return true
                 })
@@ -36,6 +36,7 @@ class PostService {
 
             })
     }
+
 }
 
 export const postService = new PostService;

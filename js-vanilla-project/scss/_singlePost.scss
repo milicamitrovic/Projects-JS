@@ -1,16 +1,10 @@
 .video-post, .text-post, .image-post {
-    margin-top: 10px;
-    border: 1px solid black;
     box-sizing: border-box;
-    border-radius: 10px;
     list-style-type: none;
-}
-
-.img {
-    height: 100%;
-    width: 100%;
-    margin-top: 15px;
     border-radius: 10px;
+    border: 1px solid black;
+    margin-top: 10px;
+    //background-color: rgb(166, 175, 180);
 }
 
 ul.main-post-list {

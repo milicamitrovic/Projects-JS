@@ -10,3 +10,8 @@ export const getUsers = () => {
 
     return userService.fetchUsers();
 }
+
+export const getSingleUser = (singleUserId) => {
+
+    return userService.fetchSingleUser(singleUserId);
+}
