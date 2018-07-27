@@ -31,39 +31,40 @@ const createSingleTextPost = (post, user) => {
     button.setAttribute("class", "col-sm-2 comment-button");
     singlePost.appendChild(button);
 
-
-    const commentList = document.createElement("ul");
-    commentList.setAttribute("class", "comments-list container");
-    singlePost.appendChild(commentList);
-
     const comments = JSON.parse(localStorage.getItem("comments"));
-    console.log(comments);
 
-    comments.forEach((comment) => {
-        const commentLi = document.createElement("li");
-        commentLi.setAttribute("class", "single-comment");
-        commentLi.innerHTML = `
-            <div class="row">
-                <div class="col-sm-3">
-                    <img src="" alt="avatar" class="user-image"/>
-                    <p class="comment-name">${comment.authorName}</p>
+    if (!comments) {
+        return
+    } else {
+        const commentList = document.createElement("ul");
+        commentList.setAttribute("class", "comments-list container");
+        singlePost.appendChild(commentList);
+
+        const comments = JSON.parse(localStorage.getItem("comments"));
+        comments.forEach((comment) => {
+            const user = JSON.parse(localStorage.getItem("user"));
+            
+            const commentLi = document.createElement("li");
+            commentLi.setAttribute("class", "single-comment");
+            commentLi.innerHTML = `
+                <div class="row">
+                    <div class="col-sm-3">
+                        <img src="${user.avatarUrl}" alt="avatar" class="user-image"/>
+                        <p class="comment-name">${user.name}</p>
+                    </div>
+                    <div class="col-sm-9 comment-content">
+                    ${comment.body}
+                    </div>
                 </div>
-                <div class="col-sm-9 comment-content">
-                ${comment.body}
-                </div>
-            </div>
-        `;
-        commentList.appendChild(commentLi);
-    });
+            `;
+            commentList.appendChild(commentLi);
+        });
+
+    }
 
 }
 
 const createSingleVideoPost = (post, user) => {
-
-    console.log(post);
-    console.log(user);
-    console.log(comments);
-
 
     const singlePost = document.createElement("div");
     singlePost.setAttribute("id", "video");
@@ -92,23 +93,20 @@ const createSingleVideoPost = (post, user) => {
     button.setAttribute("class", "col-sm-2 comment-button");
     singlePost.appendChild(button);
 
-    // if (comments.length === 0) {
-    //     const noComments = document.createElement("p");
-    //     noComments.textContent = "No comments yet";
-    //     singlePost.appendChild(noComments);
-
-    // } else {
-
-    const commentList = document.createElement("ul");
-    commentList.setAttribute("class", "comments-list container");
-    singlePost.appendChild(commentList);
-
     const comments = JSON.parse(localStorage.getItem("comments"));
 
-    comments.forEach((comment) => {
-        const commentLi = document.createElement("li");
-        commentLi.setAttribute("class", "single-comment");
-        commentLi.innerHTML = `
+    if (!comments) {
+        return
+    } else {
+
+        const commentList = document.createElement("ul");
+        commentList.setAttribute("class", "comments-list container");
+        singlePost.appendChild(commentList);
+
+        comments.forEach((comment) => {
+            const commentLi = document.createElement("li");
+            commentLi.setAttribute("class", "single-comment");
+            commentLi.innerHTML = `
             <div class="row">
                 <div class="col-sm-3">
                     <img src="" alt="avatar" class="user-image" />
@@ -119,9 +117,9 @@ const createSingleVideoPost = (post, user) => {
                 </div>
             </div>
         `;
-        commentList.appendChild(commentLi);
-    });
-    // }
+            commentList.appendChild(commentLi);
+        });
+    }
 }
 
 const createSingleImagePost = (post, user) => {
@@ -153,23 +151,20 @@ const createSingleImagePost = (post, user) => {
     button.setAttribute("class", "col-sm-2 comment-button");
     singlePost.appendChild(button);
 
-    // if (comments.length === 0) {
-    //     const noComments = document.createElement("p");
-    //     noComments.textContent = "No comments yet";
-    //     singlePost.appendChild(noComments);
-    // } else {
-
-    const commentList = document.createElement("ul");
-    commentList.setAttribute("class", "comments-list container");
-    singlePost.appendChild(commentList);
-
     const comments = JSON.parse(localStorage.getItem("comments"));
 
+    if (!comments) {
+        return
+    } else {
 
-    comments.forEach((comment) => {
-        const commentLi = document.createElement("li");
-        commentLi.setAttribute("class", "single-comment");
-        commentLi.innerHTML = `
+        const commentList = document.createElement("ul");
+        commentList.setAttribute("class", "comments-list container");
+        singlePost.appendChild(commentList);
+
+        comments.forEach((comment) => {
+            const commentLi = document.createElement("li");
+            commentLi.setAttribute("class", "single-comment");
+            commentLi.innerHTML = `
             <div class="row">
                 <div class="col-sm-3">
                     <img src="${user.avatarUrl}" alt="avatar" class="user-image" />
@@ -180,31 +175,31 @@ const createSingleImagePost = (post, user) => {
                 </div>
             </div>
         `;
-        commentList.appendChild(commentLi);
-    });
-    // }
-}
-
-export const createSinglePost = (post) => {
-
-    root.innerHTML = "";
-
-    switch (post.type) {
-        case "text":
-            return createSingleTextPost(post);
-        case "video":
-            return createSingleVideoPost(post);
-        case "image":
-            return createSingleImagePost(post);
-        default:
-            console.log("no post to show.");
+            commentList.appendChild(commentLi);
+        });
+        }
     }
-}
 
-export const collectCommentInput = () => {
+    export const createSinglePost = (post) => {
 
-    const inputValue = document.querySelector(".comment-value");
-    const input = inputValue.value;
-    return input;
-    inputValue.value = "";
-}
+        root.innerHTML = "";
+
+        switch (post.type) {
+            case "text":
+                return createSingleTextPost(post);
+            case "video":
+                return createSingleVideoPost(post);
+            case "image":
+                return createSingleImagePost(post);
+            default:
+                console.log("no post to show.");
+        }
+    }
+
+    export const collectCommentInput = () => {
+
+        const inputValue = document.querySelector(".comment-value");
+        const input = inputValue.value;
+        return input;
+        inputValue.value = "";
+    }

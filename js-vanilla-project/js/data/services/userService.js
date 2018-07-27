@@ -6,33 +6,33 @@ class UserService {
 
     fetchUsers() {
         return get(usersEndpoint)
-        .then ((users) => {
-            return users.map((user) => {
-                const id = user.id;
-                const name = user.name;
-                const about = user.aboutShort;
-                const postDate = user.lastPostDate;
-                const avatarUrl = user.avatarUrl;
+            .then((users) => {
+                return users.map((user) => {
+                    const id = user.id;
+                    const name = user.name;
+                    const about = user.aboutShort;
+                    const postDate = user.lastPostDate;
+                    const avatarUrl = user.avatarUrl;
 
-                const myUser = new User (id, name, about, postDate, avatarUrl);
-                return myUser;
+                    const myUser = new User(id, name, about, postDate, avatarUrl);
+                    return myUser;
+                })
             })
-        })
     }
 
     fetchSingleUser(id) {
         let url = (`${usersEndpoint}/${id}`);
         return get(url)
             .then((user) => {
-                const id = user.id;
-                const name = user.name;
-                const about = user.aboutShort;
-                const postDate = user.lastPostDate;
-                const avatarUrl = user.avatarUrl;
+                    const id = user.id;
+                    const name = user.name;
+                    const about = user.aboutShort;
+                    const postDate = user.lastPostDate;
+                    const avatarUrl = user.avatarUrl;
 
-                const myUser = new User (id, name, about, postDate, avatarUrl);
-                return myUser;
-            })
+                    const myUser = new User(id, name, about, postDate, avatarUrl);
+                    return myUser;
+                })
     }
 }
 

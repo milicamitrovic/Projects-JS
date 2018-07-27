@@ -56,18 +56,24 @@ const singlePostHandler = (event) => {
             getCommentsHandler(post);
         })
     setTimeout(postNewSingleComment, 2000);
-
 }
 
 const getCommentsHandler = (post) => {
 
     data.getComments(post.id)
         .then((comments) => {
-            localStorage.setItem("comments", JSON.stringify(comments))
+            localStorage.setItem("comments", JSON.stringify(comments));
+            if (comments) {
+                createSinglePost(post);
+            }
             comments.forEach((comment) => {
-              createSinglePost(post);
-            })
+                data.getSingleUser(comment.authorId)
+                    .then((user) => {  
+                        localStorage.setItem("user", JSON.stringify(user));
+                        createSinglePost(post);
+                    })
         })
+    })
 }
 
 const postCommentHandler = (event) => {
@@ -100,8 +106,6 @@ const newCommentHandler = (postId) => {
 const postNewSingleComment = () => {
 
     const inputValue = document.querySelector(".comment-button");
-    console.log(inputValue);
-
     inputValue.addEventListener("click", postCommentHandler);
 }
 
