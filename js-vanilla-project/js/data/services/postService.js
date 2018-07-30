@@ -42,13 +42,13 @@ class PostService {
 
         switch (type) {
             case "text":
-                return url = `${urlEndpoint}TextPosts/`;
+                return url = `${urlEndpoint}TextPosts`;
 
             case "video":
-                return url = `${urlEndpoint}VideoPosts/`;
+                return url = `${urlEndpoint}VideoPosts`;
 
             case "image":
-                return url = `${urlEndpoint}ImagePosts/`;
+                return url = `${urlEndpoint}ImagePosts`;
             default:
                 return "...";
         }
@@ -59,9 +59,13 @@ class PostService {
 
     fetchSinglePost(type, id) {
 
-        const urlEndpoint = (`${this.selectPostType(type)}${id}`);
-        return get(urlEndpoint)
-      
+        const urlEndpoint = `${this.selectPostType(type)}/${id}`;
+        return get(urlEndpoint);
+    }
+
+    postNewPost(type, postData) {
+        const url = `${this.selectPostType(type)}`;
+        return post(url, postData);
     }
 }
 

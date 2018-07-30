@@ -23,6 +23,17 @@ export const getUsers = () => {
 }
 
 export const getSingleUser = (id) => {
-    return userService.fetchSingleUser(id)
-        
+    return userService.fetchSingleUser(id)    
+}
+
+export const getProfile = () => {
+    return userService.fetchProfile();
+}
+
+export const createNewPost = (type, postData) => {
+    return postService.postNewPost(type, postData);
+}
+
+export const updateProfile = (data) => {
+    return userService.updateProfile(data);
 }

@@ -118,6 +118,103 @@ footer {
 ul.main-post-list {
   padding: 0; }
 
+.post-type {
+  float: right; }
+
+.post-content {
+  margin: 15px; }
+
+.video-content {
+  margin: 0 auto;
+  margin-top: 15px; }
+
+#create-post-button {
+  position: fixed;
+  left: 30px;
+  background-color: white;
+  color: white; }
+
+.img-post-button {
+  display: block;
+  width: 50px;
+  height: 50px; }
+
+.create-text {
+  text-align: center;
+  background-color: #5485ee;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 30px; }
+
+.create-video {
+  text-align: center;
+  background-color: #ee5050;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 30px; }
+
+.create-image {
+  text-align: center;
+  background-color: #56fd88;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 30px; }
+
+.move-content {
+  position: relative;
+  top: 11px; }
+
+#new-text-post {
+  width: 90%;
+  height: 50px; }
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */ }
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */ }
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold; }
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer; }
+
 .users-list {
   margin-top: 20px;
   margin-bottom: 30px; }
@@ -195,5 +292,80 @@ ul.main-post-list {
 
 .comment-name {
   margin-left: 5px; }
+
+.profile-photo {
+  text-align: center; }
+
+.user-profile-photo {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 50px; }
+
+.user-name {
+  text-align: center;
+  margin-bottom: 20px; }
+
+.div-posts-count, .div-comments-count {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+#posts-count, #comments-count {
+  background-color: #7ccccc;
+  color: white;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 0px; }
+
+.profile-photo {
+  text-align: center; }
+
+#profile-photo {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 50px; }
+
+.user-name {
+  text-align: center;
+  margin-bottom: 20px; }
+
+.div-edit-profile {
+  text-align: center; }
+
+.edit-profile {
+  background-color: #7ccccc;
+  color: white;
+  border-radius: 20px;
+  padding: 10px; }
+
+.about {
+  text-align: center;
+  margin-top: 20px; }
+
+.div-posts-count, .div-comments-count {
+  text-align: center;
+  margin-top: 20px; }
+
+#posts-count, #comments-count {
+  background-color: #7ccccc;
+  color: white;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 0px; }
+
+#update-profile {
+  background-color: #7ccccc;
+  color: white;
+  border-radius: 20px;
+  padding: 5px;
+  margin-top: 10px;
+  width: 80px; }
+
+.edit-title {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

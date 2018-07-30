@@ -59,9 +59,7 @@ const createSingleTextPost = (post, user) => {
             `;
             commentList.appendChild(commentLi);
         });
-
     }
-
 }
 
 const createSingleVideoPost = (post, user) => {
@@ -104,13 +102,14 @@ const createSingleVideoPost = (post, user) => {
         singlePost.appendChild(commentList);
 
         comments.forEach((comment) => {
+            const user = JSON.parse(localStorage.getItem("user"));
             const commentLi = document.createElement("li");
             commentLi.setAttribute("class", "single-comment");
             commentLi.innerHTML = `
             <div class="row">
                 <div class="col-sm-3">
-                    <img src="" alt="avatar" class="user-image" />
-                    <p class="comment-name">${comment.authorName}</p>
+                    <img src="${user.avatarUrl}" alt="avatar" class="user-image" />
+                    <p class="comment-name">${user.name}</p>
                 </div>
                 <div class="col-sm-9 comment-content">
                 ${comment.body}
@@ -162,6 +161,7 @@ const createSingleImagePost = (post, user) => {
         singlePost.appendChild(commentList);
 
         comments.forEach((comment) => {
+            const user = JSON.parse(localStorage.getItem("user"));
             const commentLi = document.createElement("li");
             commentLi.setAttribute("class", "single-comment");
             commentLi.innerHTML = `
@@ -201,5 +201,10 @@ const createSingleImagePost = (post, user) => {
         const inputValue = document.querySelector(".comment-value");
         const input = inputValue.value;
         return input;
-        inputValue.value = "";
+    }
+
+    export const clearSearchInput = () => {
+
+        const searchInput = document.querySelector(".comment-value");
+        searchInput.value = "";
     }
