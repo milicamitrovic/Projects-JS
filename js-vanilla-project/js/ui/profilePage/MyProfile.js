@@ -30,50 +30,28 @@ export const createMyProfilePage = (user) => {
             </div>
 
             <div id="myModal" class="modal">
-
-                <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <h1 class="edit-title">Edit Profile</h1>
-                    <span><b>Name:</b> </span><input type="text" id="update-name" placeholder="${user.name}" />
-                    <span><b>About:</b> </span><input type="text" id="update-about" placeholder="${user.aboutShort}" />
-                    <span><b>Photo:</b> </span><input type="text" id="update-photo-link" placeholder="${user.avatarUrl}" />
+                    <span><b>Name:</b> </span><input type="text" id="update-name" placeholder="${user.name}" value=${user.name} />
+                    <span><b>About:</b> </span><input type="text" id="update-about" placeholder="${user.aboutShort}" value=${user.aboutShort} />
+                    <span><b>Photo:</b> </span><input type="text" id="update-photo-link" placeholder="${user.avatarUrl}" value=${user.avatarUrl} />
                     <input type="button" id="update-profile" value="Update" />
                 </div>
-
             </div>
         `;
     root.appendChild(profile);
-    createModal();
-}
-
-const createModal = (event) => {
-
 
     const modal = document.querySelector('#myModal');
-
-    // Get the button that opens the modal
     const btn = document.querySelector("#myBtn");
-
-    // Get the <span> element that closes the modal
     const span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal 
 
     btn.addEventListener("click", () => {
         modal.style.display = "block";
     })
 
-    // When the user clicks on <span> (x), close the modal
     span.addEventListener("click", () => {
         modal.style.display = "none";
-    })
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.addEventListener("click", (event) => {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
     })
 }
 
@@ -107,5 +85,4 @@ const clearUpdatedData = () => {
     aboutInput.value = "";
     const photoInput = document.querySelector("#update-photo-link");
     photoInput.value = "";
-
 }

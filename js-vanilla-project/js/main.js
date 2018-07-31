@@ -1,7 +1,7 @@
 import { createHeader } from "./ui/partials/Header.js";
 import * as data from "./data/data.js";
 import * as feedPage from "./ui/feedPage/FeedList.js";
-import { createSinglePost, collectCommentInput } from "./ui/feedPage/SinglePost.js"
+import { createSinglePost, collectCommentInput } from "./ui/feedPage/SinglePost.js";
 import { createUsersList, goToUserProfile } from "./ui/peoplePage/UsersList.js";
 import { createFooter } from "./ui/partials/Footer.js";
 import { createMyProfilePage } from "./ui/profilePage/MyProfile.js";
@@ -10,9 +10,42 @@ const createFeedPage = (event) => {
 
     data.getPosts()
         .then((posts) => {
-            feedPage.createFeedList(posts)
             localStorage.setItem("posts", JSON.stringify(posts));
+            feedPage.createFeedList(posts)
+            feedPage.createFilterMenu()
         });
+    setTimeout(initFilterMenu, 2000)
+}
+
+const initFilterMenu = () => {
+
+    const allPosts = document.querySelectorAll(".filter-posts");
+    allPosts.forEach((post) => {
+        post.addEventListener("change", filterPostsHandler)
+    })
+}
+
+export const filterPostsHandler = (event) => {
+
+    const posts = JSON.parse(localStorage.getItem("posts"));
+    const root = document.querySelector(".root");
+    root.innerHTML = "";
+
+    feedPage.createFilterMenu();
+
+        if (event.target.value === "text") {
+            return feedPage.filterTextPost();
+        }
+        else if (event.target.value === "video") {
+            return feedPage.filterVideoPost();
+        }
+        else if (event.target.value === "image") {
+            return feedPage.filterImagePost();
+        }
+
+        else if (event.target.value === "all") {
+            return feedPage.createFeedList(posts);
+        }
 }
 
 const initFeedPage = (event) => {
@@ -49,7 +82,7 @@ const filterUsers = (event) => {
     let searchValue = collectCommentInput();
     console.log(searchValue);
     const myUsers = JSON.parse(localStorage.getItem("users"));
-    
+
     let filterUsers = myUsers.filter((user) => {
         let userName = user.name.toLowerCase();
         return userName.includes(searchValue);
@@ -58,7 +91,7 @@ const filterUsers = (event) => {
     if (searchValue === "") {
         return
     }
-    createUsersList(filterUsers);   
+    createUsersList(filterUsers);
 }
 
 const initUsersPage = () => {
@@ -148,7 +181,7 @@ const goToUserProfileHandler = (event) => {
 
     event.preventDefault();
     const userId = event.target.getAttribute("user-id");
-    
+
     data.getSingleUser(userId)
         .then((user) => {
             goToUserProfile(user);
@@ -164,11 +197,14 @@ const initSingleUserProfilePage = () => {
 }
 
 const profilePageHandler = (event) => {
-    
+
     data.getProfile()
         .then((profile) => {
+            localStorage.setItem("profile", JSON.stringify(profile))
             createMyProfilePage(profile);
         });
+
+    setTimeout(initProfileModal, 1000)
 }
 
 const initProfilePage = () => {
@@ -179,7 +215,56 @@ const initProfilePage = () => {
     });
 }
 
+const updateProfileHandler = (event) => {
 
+    event.preventDefault();
+
+    const nameInput = document.querySelector("#update-name");
+    const name = nameInput.value;
+    const aboutInput = document.querySelector("#update-about");
+    const about = aboutInput.value;
+    const photoInput = document.querySelector("#update-photo-link");
+    const photo = photoInput.value;
+    const profile = JSON.parse(localStorage.getItem("profile"));
+
+    const checkName = (name) => {
+        if (name === "") {
+            return profile.name;
+        }
+        return name;
+    }
+
+    const checkPhoto = (photo) => {
+        if (photo === "") {
+            return profile.avatarUrl;
+        }
+        return photo
+    }
+
+    const checkedName = checkName(name);
+    const checkedPhoto = checkPhoto(photo);
+
+    const dataToUpdate = {
+        userId: profile.id,
+        name: checkedName,
+        email: "bla@gmail.com",
+        aboutShort: about,
+        about: about,
+        avatarUrl: checkedPhoto,
+        commentsCount: profile.commentsCount
+    }
+
+    data.updateProfile(dataToUpdate)
+        .then((response) => {
+            profilePageHandler();
+        })
+}
+
+const initProfileModal = () => {
+
+    const update = document.querySelector("#update-profile");
+    update.addEventListener("click", updateProfileHandler);
+}
 
 export const init = () => {
 

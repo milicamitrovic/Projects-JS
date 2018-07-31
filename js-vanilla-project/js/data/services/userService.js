@@ -1,4 +1,4 @@
-import { get } from "./APIService.js";
+import { get, put } from "./APIService.js";
 import { usersEndpoint, profileEndpoint, updateProfileEndpoint } from "../shared/constants.js";
 import { User } from "../entities/User.js";
 

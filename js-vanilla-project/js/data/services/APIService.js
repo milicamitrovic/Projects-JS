@@ -48,7 +48,11 @@ export const put = (url, data) => {
 
         method: 'PUT',
         body: JSON.stringify(data),
-        headers: getHeaders(),
+        headers: {
+            'Content-Type': 'application/json',
+            'sessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE',
+            'Key': 'bitbookdev',
+        },
     })
 
 }
